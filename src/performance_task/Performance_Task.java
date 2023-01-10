@@ -16,7 +16,7 @@ public class Performance_Task {
 		
 		System.out.println("Projectile Path: ");
 		
-		int sec = 0;
+		double sec = 0;
 		double y = 5;
 		double x = 5;
 		do{
@@ -26,6 +26,8 @@ public class Performance_Task {
 			if(y < 0) {
 				bool = false;
 				y = 0;
+				x = Math.cos(Math.toRadians(deg)) * sec * vel;
+				
 			}
 			System.out.println("Time: "+sec+"s");
 			System.out.println("x-pos: "+x+"m");
