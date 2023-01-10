@@ -25,13 +25,19 @@ public class Performance_Task {
 			y = Math.sin(Math.toRadians(deg)) * sec * vel - 0.5 * 9.8 * (sec*sec);
 			if(y < 0) {
 				bool = false;
-				y = 0;
-				x = Math.cos(Math.toRadians(deg)) * sec * vel;
+//				sec--;
+//				sec += (-Math.sin(Math.toRadians(deg)*vel-(vel*Math.sin(Math.toRadians(deg)))))/-9.8;
+//				x = Math.cos(Math.toRadians(deg)) * sec * vel;
+//				y = Math.sin(Math.toRadians(deg)) * sec * vel - 0.5 * 9.8 * (sec*sec);
+				
+				y = 0.0;
+				x = getXatY(y, deg, vel);
+				
 				
 			}
 			System.out.println("Time: "+sec+"s");
-			System.out.println("x-pos: "+x+"m");
-			System.out.println("y-pos: "+y+"m");
+			System.out.println("   x-pos: "+x+"m");
+			System.out.println("   y-pos: "+y+"m");
 			sec++;
 			//wrongly placed code (?) : Lines 31-34
 //			sec++;
@@ -44,5 +50,30 @@ public class Performance_Task {
 		
 		
 	}
+	
+	
+	
+	
+	public static double getXatY(double y, double theta, double v) {
+		
+		//sin of launch Angle
+		double sTheta = Math.sin(Math.toRadians(theta));
+		//discriminant
+		double disc = Math.sqrt(Math.pow(sTheta * v, 2) - 19.6 * y);
+		
+		//both values for time at given y
+		double t1 = (-sTheta*v + disc) / -9.8;
+		double t2 = (-sTheta*v - disc) / -9.8;
+		
+		//grab largest time value
+		double t = Math.max(t1,  t2);
+		
+		
+		//get x coordinate at largest time value
+		double x = Math.cos(Math.toRadians(theta)) * t * v;
+		
+		return x;
+	}
+	
 	
 }
